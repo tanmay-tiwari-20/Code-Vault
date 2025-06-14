@@ -19,7 +19,7 @@ CodeVault is a modern, animated, and responsive portfolio web app powered by the
 
 ## 🌐 Live Demo
 
-👉 [Code Vault](https://code-vault-mocha.vercel.app/) *(replace with your live link)*
+👉 [CodeVault](https://code-vault-mocha.vercel.app/) *(replace with your live link)*
 
 ---
 
