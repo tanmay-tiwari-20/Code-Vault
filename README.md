@@ -1,10 +1,10 @@
-# 🚀 CodeVault – Your GitHub Portfolio, Reimagined
+# CodeVault – Your GitHub Portfolio, Reimagined
 
 CodeVault is a modern, animated, and responsive portfolio web app powered by the GitHub API. It fetches your public repositories in real-time and showcases them with elegant visuals, tech filters, and contribution insights — perfect for developers who want to present their GitHub work in style.
 
 ---
 
-## 🔥 Features
+## Features
 
 - 🔍 Search by GitHub username
 - 🎨 Animated, responsive UI (Framer Motion + Tailwind CSS)
@@ -17,13 +17,13 @@ CodeVault is a modern, animated, and responsive portfolio web app powered by the
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 
-👉 [CodeVault](https://code-vault-mocha.vercel.app/) *(replace with your live link)*
+[CodeVault](https://code-vault-mocha.vercel.app/)
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Tech           | Usage                           |
 |----------------|----------------------------------|
@@ -36,7 +36,7 @@ CodeVault is a modern, animated, and responsive portfolio web app powered by the
 
 ---
 
-## 🧑‍💻 How to Run Locally
+## How to Run Locally
 
 ```bash
 git clone https://github.com/tanmay-tiwari-20/codevault.git
