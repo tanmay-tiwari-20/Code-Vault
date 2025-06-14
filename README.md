@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 CodeVault – Your GitHub Portfolio, Reimagined
 
-## Getting Started
+CodeVault is a modern, animated, and responsive portfolio web app powered by the GitHub API. It fetches your public repositories in real-time and showcases them with elegant visuals, tech filters, and contribution insights — perfect for developers who want to present their GitHub work in style.
 
-First, run the development server:
+---
+
+## 🔥 Features
+
+- 🔍 Search by GitHub username
+- 🎨 Animated, responsive UI (Framer Motion + Tailwind CSS)
+- 📦 Fetches public repositories using GitHub REST API
+- 🧠 Filter projects by programming language
+- 📊 Pie chart of top used languages (via Recharts)
+- 🌙 Dark and light mode support
+- ⚡ Smooth transitions and modern card design
+- 🛡️ Secure, client-side only with no backend
+
+---
+
+## 🌐 Live Demo
+
+👉 [Code Vault](https://code-vault-mocha.vercel.app/) *(replace with your live link)*
+
+---
+
+## 🧰 Tech Stack
+
+| Tech           | Usage                           |
+|----------------|----------------------------------|
+| **Next.js**    | React framework & routing        |
+| **Tailwind CSS** | Utility-first CSS framework     |
+| **Framer Motion** | Animations and transitions     |
+| **GitHub API** | Fetching user repositories       |
+| **Recharts**   | Language usage pie chart         |
+| **shadcn/ui**  | Clean and consistent components  |
+
+---
+
+## 🧑‍💻 How to Run Locally
 
 ```bash
+git clone https://github.com/tanmay-tiwari-20/codevault.git
+cd codevault
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Then visit http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ Let me know if you want:
+- A version with **badges** (e.g., Vercel, GitHub stars)
+- A **dark mode toggle preview GIF**
+- A custom **Open Graph banner image** design (with your branding)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---

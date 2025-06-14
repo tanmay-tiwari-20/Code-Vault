@@ -30,12 +30,12 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  metadataBase: new URL("https://codevault.vercel.app"),
+  metadataBase: new URL("https://code-vault-mocha.vercel.app/"),
   openGraph: {
     title: "CodeVault – Your GitHub Portfolio, Reimagined",
     description:
       "Discover your best repositories with CodeVault. Beautifully designed, animated, and powered by GitHub's API.",
-    url: "https://codevault.vercel.app",
+    url: "https://code-vault-mocha.vercel.app/",
     siteName: "CodeVault",
     locale: "en_US",
     type: "website",
