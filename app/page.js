@@ -15,6 +15,7 @@ import {
   Sparkles,
   Zap,
   Rocket,
+  MapPin,
 } from "lucide-react";
 import {
   PieChart,
@@ -76,7 +77,7 @@ const CodeVault = () => {
       setLoading(true);
       setError("");
 
-      // Multiple proxy options to try
+      // Proxy options
       const proxies = [
         "https://corsproxy.io/?",
         "https://cors-anywhere.herokuapp.com/",
@@ -110,15 +111,15 @@ const CodeVault = () => {
 
             if (reposResponse.ok) {
               reposData = await reposResponse.json();
-              break; // Success! Exit the loop
+              break;
             }
           } else if (userResponse.status === 404) {
             throw new Error("User not found");
           }
         } catch (proxyError) {
           console.log(`Proxy ${i + 1} failed:`, proxyError);
+
           if (i === proxies.length - 1) {
-            // If all proxies fail, try direct API call (might work in some environments)
             try {
               const directUserResponse = await fetch(
                 `https://api.github.com/users/${user}`
@@ -151,7 +152,7 @@ const CodeVault = () => {
       setRepositories(reposData);
       setFilteredRepos(reposData);
 
-      // Calculate language statistics
+      // Calculate language stats
       const langCount = {};
       reposData.forEach((repo) => {
         if (repo.language) {
@@ -240,18 +241,6 @@ const CodeVault = () => {
     },
   };
 
-  const hoverVariants = {
-    hover: {
-      scale: 1.05,
-      y: -10,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      },
-    },
-  };
-
   const RepoCard = ({ repo, index }) => (
     <motion.div
       variants={itemVariants}
@@ -273,7 +262,7 @@ const CodeVault = () => {
 
       {/* Floating particles effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-blue-500 rounded-full"
@@ -578,71 +567,70 @@ const CodeVault = () => {
             transition={{ delay: 0.8, duration: 0.8 }}
           >
             <div
-  className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-0 rounded-2xl border p-4 sm:p-3 backdrop-blur-2xl shadow-2xl w-full ${
-    darkMode
-      ? "bg-gray-900/20 border-gray-700/30"
-      : "bg-white/20 border-gray-200/30"
-  }`}
->
-  <input
-    type="text"
-    placeholder="Enter GitHub username"
-    value={username}
-    onChange={(e) => setUsername(e.target.value)}
-    onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-    className={`flex-1 px-4 py-3 sm:py-4 bg-transparent border-none outline-none text-base sm:text-lg rounded-xl ${
-      darkMode
-        ? "text-white placeholder-gray-400"
-        : "text-gray-900 placeholder-gray-500"
-    }`}
-  />
-  <motion.button
-    onClick={handleSearch}
-    disabled={loading}
-    className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold shadow-lg disabled:opacity-50"
-    whileHover={{
-      scale: 1.05,
-      boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
-    }}
-    whileTap={{ scale: 0.95 }}
-    transition={{ type: "spring", stiffness: 300 }}
-  >
-    <AnimatePresence mode="wait">
-      {loading ? (
-        <motion.div
-          key="loading"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="flex items-center justify-center space-x-2"
-        >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-          />
-          <span>Loading...</span>
-        </motion.div>
-      ) : (
-        <motion.div
-          key="explore"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="flex items-center justify-center space-x-2"
-        >
-          <Rocket className="w-5 h-5" />
-          <span>Explore</span>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </motion.button>
-</div>
-
+              className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-0 rounded-2xl border p-4 sm:p-3 backdrop-blur-2xl shadow-2xl w-full ${
+                darkMode
+                  ? "bg-gray-900/20 border-gray-700/30"
+                  : "bg-white/20 border-gray-200/30"
+              }`}
+            >
+              <input
+                type="text"
+                placeholder="Enter GitHub username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+                className={`flex-1 px-4 py-3 sm:py-4 bg-transparent border-none outline-none text-base sm:text-lg rounded-xl ${
+                  darkMode
+                    ? "text-white placeholder-gray-400"
+                    : "text-gray-900 placeholder-gray-500"
+                }`}
+              />
+              <motion.button
+                onClick={handleSearch}
+                disabled={loading}
+                className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold shadow-lg disabled:opacity-50"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <AnimatePresence mode="wait">
+                  {loading ? (
+                    <motion.div
+                      key="loading"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center justify-center space-x-2"
+                    >
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                      />
+                      <span>Loading...</span>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="explore"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center justify-center space-x-2"
+                    >
+                      <Rocket className="w-5 h-5" />
+                      <span>Explore</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
 
             <motion.div
               className="mt-6"
@@ -676,7 +664,7 @@ const CodeVault = () => {
         </div>
       </section>
 
-      {/* User Stats */}
+      {/* User Profile + Stats Section Combined  */}
       <AnimatePresence>
         {userStats && (
           <motion.section
@@ -686,87 +674,199 @@ const CodeVault = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {[
-                {
-                  icon: Users,
-                  value: userStats.followers,
-                  label: "Followers",
-                  color: "text-blue-500",
-                  gradient: "from-blue-500 to-cyan-500",
-                },
-                {
-                  icon: Code2,
-                  value: userStats.public_repos,
-                  label: "Repositories",
-                  color: "text-green-500",
-                  gradient: "from-green-500 to-emerald-500",
-                },
-                {
-                  icon: TrendingUp,
-                  value: userStats.following,
-                  label: "Following",
-                  color: "text-purple-500",
-                  gradient: "from-purple-500 to-pink-500",
-                },
-                {
-                  icon: Calendar,
-                  value: new Date(userStats.created_at).getFullYear(),
-                  label: "Joined",
-                  color: "text-orange-500",
-                  gradient: "from-orange-500 to-red-500",
-                },
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  className={`p-8 rounded-2xl border backdrop-blur-xl ${
-                    darkMode
-                      ? "bg-gray-900/30 border-gray-700/50"
-                      : "bg-white/30 border-gray-200/50"
-                  } hover:shadow-2xl transition-all duration-300`}
-                >
-                  <div className="flex items-center space-x-4">
-                    <motion.div
-                      className={`p-4 rounded-2xl bg-gradient-to-r ${stat.gradient}`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
+              {/* User Profile Card - 1 Column */}
+              <motion.div
+                className={`col-span-1 p-8 rounded-2xl border backdrop-blur-md shadow-lg ${
+                  darkMode
+                    ? "bg-gray-800/40 border-gray-700"
+                    : "bg-white/60 border-gray-200"
+                } hover:shadow-2xl transition-all duration-500`}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="flex flex-col items-center text-center">
+                  {/* Avatar */}
+                  <motion.img
+                    src={userStats.avatar_url}
+                    alt={userStats.name || userStats.login}
+                    className="w-32 h-32 rounded-full mb-6 border-4 border-white dark:border-gray-700 shadow-md"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{
+                      delay: 0.3,
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15,
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                  />
+
+                  {/* Name */}
+                  <motion.h2
+                    className={`text-2xl font-semibold tracking-tight mb-1 ${
+                      darkMode ? "text-white" : "text-gray-900"
+                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    {userStats.name || userStats.login}
+                  </motion.h2>
+
+                  {/* Username */}
+                  <motion.p
+                    className={`text-sm font-medium mb-4 ${
+                      darkMode ? "text-blue-300" : "text-blue-600"
+                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    @{userStats.login}
+                  </motion.p>
+
+                  {/* Bio */}
+                  {userStats.bio && (
+                    <motion.p
+                      className={`text-sm mb-6 leading-relaxed max-w-xs ${
+                        darkMode ? "text-gray-300" : "text-gray-600"
+                      }`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
                     >
-                      <stat.icon className="w-8 h-8 text-white" />
+                      {userStats.bio}
+                    </motion.p>
+                  )}
+
+                  {/* Location */}
+                  {userStats.location && (
+                    <motion.div
+                      className={`flex items-center gap-2 mb-4 text-sm ${
+                        darkMode ? "text-gray-400" : "text-gray-700"
+                      }`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7 }}
+                    >
+                      <MapPin className="w-4 h-4" />
+                      <span>{userStats.location}</span>
                     </motion.div>
-                    <div>
-                      <motion.p
-                        className={`text-3xl font-bold ${
-                          darkMode ? "text-white" : "text-gray-900"
-                        }`}
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          delay: index * 0.1 + 0.3,
-                          type: "spring",
-                          stiffness: 200,
-                        }}
+                  )}
+
+                  {/* Blog/Website */}
+                  {userStats.blog && (
+                    <motion.a
+                      href={
+                        userStats.blog.startsWith("http")
+                          ? userStats.blog
+                          : `https://${userStats.blog}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-2 text-sm font-medium hover:underline ${
+                        darkMode
+                          ? "text-blue-400 hover:text-blue-300"
+                          : "text-blue-600 hover:text-blue-500"
+                      }`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Visit Website</span>
+                    </motion.a>
+                  )}
+                </div>
+              </motion.div>
+
+              {/* Stats - 3 Columns */}
+              <motion.div
+                className="col-span-1 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {[
+                  {
+                    icon: Users,
+                    value: userStats.followers,
+                    label: "Followers",
+                    color: "text-blue-500",
+                    gradient: "from-blue-500 to-cyan-500",
+                  },
+                  {
+                    icon: Code2,
+                    value: userStats.public_repos,
+                    label: "Repositories",
+                    color: "text-green-500",
+                    gradient: "from-green-500 to-emerald-500",
+                  },
+                  {
+                    icon: TrendingUp,
+                    value: userStats.following,
+                    label: "Following",
+                    color: "text-purple-500",
+                    gradient: "from-purple-500 to-pink-500",
+                  },
+                  {
+                    icon: Calendar,
+                    value: new Date(userStats.created_at).getFullYear(),
+                    label: "Joined",
+                    color: "text-orange-500",
+                    gradient: "from-orange-500 to-red-500",
+                  },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.05, y: -10 }}
+                    className={`p-8 rounded-2xl border backdrop-blur-xl ${
+                      darkMode
+                        ? "bg-gray-900/30 border-gray-700/50"
+                        : "bg-white/30 border-gray-200/50"
+                    } hover:shadow-2xl transition-all duration-300`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <motion.div
+                        className={`p-4 rounded-2xl bg-gradient-to-r ${stat.gradient}`}
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
                       >
-                        {stat.value.toLocaleString()}
-                      </motion.p>
-                      <p
-                        className={`text-sm font-medium ${
-                          darkMode ? "text-gray-400" : "text-gray-600"
-                        }`}
-                      >
-                        {stat.label}
-                      </p>
+                        <stat.icon className="w-8 h-8 text-white" />
+                      </motion.div>
+                      <div>
+                        <motion.p
+                          className={`text-3xl font-bold ${
+                            darkMode ? "text-white" : "text-gray-900"
+                          }`}
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            delay: index * 0.1 + 0.3,
+                            type: "spring",
+                            stiffness: 200,
+                          }}
+                        >
+                          {stat.value.toLocaleString()}
+                        </motion.p>
+                        <p
+                          className={`text-sm font-medium ${
+                            darkMode ? "text-gray-400" : "text-gray-600"
+                          }`}
+                        >
+                          {stat.label}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </motion.section>
         )}
       </AnimatePresence>
