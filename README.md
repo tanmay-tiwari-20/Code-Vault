@@ -48,10 +48,3 @@ Then visit http://localhost:3000
 
 
 ---
-
-✅ Let me know if you want:
-- A version with **badges** (e.g., Vercel, GitHub stars)
-- A **dark mode toggle preview GIF**
-- A custom **Open Graph banner image** design (with your branding)
-
----
